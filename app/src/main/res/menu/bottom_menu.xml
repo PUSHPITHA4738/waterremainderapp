@@ -4,16 +4,13 @@
     <item
         android:id="@+id/bottom_home"
         android:title=""
-        android:icon="@drawable/homeicon"
-        android:enabled="true"/>
+        android:icon="@drawable/homeicon" />
     <item
         android:id="@+id/bottom_history"
         android:title=""
-        android:enabled="true"
         android:icon="@drawable/order_history_icon"/>
     <item
         android:id="@+id/bottom_settings"
         android:title=""
-        android:enabled="true"
         android:icon="@drawable/settings_icon"/>
 </menu>

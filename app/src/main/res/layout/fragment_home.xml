@@ -1,22 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/HeadingHydrate"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="20dp"
-        android:background="@color/blue"/>
-    <androidx.appcompat.widget.Toolbar
+        android:layout_height="100dp"
+        android:background="@color/blue"
+        android:paddingTop="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingTop="20dp"
+            app:title="Hydrate" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Progress_Cardview"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="20dp"
-        app:title="Hydrate"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toBottomOf="@id/HeadingHydrate">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Remaining_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remaining:"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@id/Progress_tv"
+                app:layout_constraintTop_toBottomOf="@id/Progress_tv" />
+
+            <com.ss.profilepercentageview.ProfilePercentageView
+                android:id="@+id/PercentageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Remaining_tv"
+                app:ppv_arcBackgroundColor="#81505050"
+                app:ppv_arcProgressEndColor="@color/progressColor"
+                app:ppv_arcProgressStartColor="@color/progressColor"
+                app:ppv_arcWidth="7dp"
+                app:ppv_currentValue="25"
+                app:ppv_dashWidth="50dp"
+                app:ppv_imgBorderColor="@color/borderColor"
+                app:ppv_isRounded="true"
+                app:ppv_max="100" />
+
+            <TextView
+                android:id="@+id/Progress_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Progress"
+                android:textColor="#0F3D64"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/PercentageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Goaltv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Goal"
+                android:textColor="#D8505050"
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@id/GoalIv"
+                app:layout_constraintTop_toTopOf="@id/Remaining_tv" />
+
+            <ImageView
+                android:id="@+id/GoalIv"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:contentDescription="Goals"
+                android:src="@drawable/goal_icon"
+                app:layout_constraintStart_toEndOf="@id/PercentageView"
+                app:layout_constraintTop_toBottomOf="@id/Progress_tv" />
+
+            <TextView
+                android:id="@+id/QuantityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/ml"
+                android:textColor="#0F3D64"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/Goaltv"
+                app:layout_constraintTop_toBottomOf="@id/Goaltv" />
+
+            <Button
+                android:id="@+id/AddWaterBtn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:text="ADD WATER"
+                android:textColor="#0F3D64"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/GoalIv"
+                app:layout_constraintTop_toBottomOf="@id/QuantityTv" />
+
+            <TextView
+                android:id="@+id/Score_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25"
+                android:textColor="#D8505050"
+                android:textSize="30sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/PercentageView"
+                app:layout_constraintEnd_toEndOf="@id/PercentageView"
+                app:layout_constraintStart_toStartOf="@id/PercentageView"
+                app:layout_constraintTop_toTopOf="@id/PercentageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/Record_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="Today's Records"
+        android:textColor="#0F3D64"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/Progress_Cardview"
+        app:layout_constraintTop_toBottomOf="@id/Progress_Cardview" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintTop_toBottomOf="@id/Record_tv"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_layout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
