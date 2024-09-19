@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -17,27 +18,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.profilepercentageview.ProfilePercentageView
 import java.text.SimpleDateFormat
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewmodel.viewModelFactory
 import java.time.temporal.TemporalQueries
 import java.util.Locale
 
-private lateinit var adapter: AdapterClass
-private lateinit var recyclerView: RecyclerView
-private lateinit var recordsArrayList: ArrayList<Dataclass>
+
+
 
 class HomeFragment : Fragment() {
+    private lateinit var adapter: AdapterClass
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var recordsArrayList: ArrayList<Dataclass>
+    private val  logsViewModel:LogViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home,container, false)
+
         recyclerView = view.findViewById(R.id.RecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         recordsArrayList = ArrayList()
         adapter = AdapterClass(recordsArrayList)
         recyclerView.adapter = adapter
-        
+
 
         val addWaterBtn = view.findViewById<Button>(R.id.AddWaterBtn)
         addWaterBtn.setOnClickListener {
@@ -45,7 +52,6 @@ class HomeFragment : Fragment() {
         }
         return view
     }
-
 
 
     @SuppressLint("MissingInflatedId")
