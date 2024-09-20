@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/bottom_home"
-        android:name="com.example.waterremainderapp.HomeFragment"
+        android:name="com.example.waterremainderapp.fragments.HomeFragment"
         android:label="home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/bottom_history"
-        android:name="com.example.waterremainderapp.HistoryFragment"
+        android:name="com.example.waterremainderapp.fragments.HistoryFragment"
         android:label="history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/bottom_settings"
-        android:name="com.example.waterremainderapp.SettingsFragment"
+        android:name="com.example.waterremainderapp.fragments.SettingsFragment"
         android:label="settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.waterremainderapp
+package com.example.waterremainderapp.database
 
 import android.content.Context
 import androidx.room.Database

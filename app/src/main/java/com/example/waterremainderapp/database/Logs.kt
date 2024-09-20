@@ -1,4 +1,4 @@
-package com.example.waterremainderapp
+package com.example.waterremainderapp.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

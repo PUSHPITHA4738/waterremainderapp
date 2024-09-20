@@ -1,14 +1,15 @@
-package com.example.waterremainderapp
+package com.example.waterremainderapp.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.whenCreated
+import com.example.waterremainderapp.viewmodel.LogViewModel
+import com.example.waterremainderapp.R
+import com.example.waterremainderapp.fragments.HistoryFragment
+import com.example.waterremainderapp.fragments.HomeFragment
+import com.example.waterremainderapp.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         val historyFragment = HistoryFragment()
         val settingsFragment = SettingsFragment()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.BottomNavigationIcons)
-        logViewModel=ViewModelProvider(this, LogViewModel.LogsVmFactory(application)).get(LogViewModel::class.java)
+        logViewModel=ViewModelProvider(this, LogViewModel.LogsVmFactory(application)).get(
+            LogViewModel::class.java)
 
         replaceFragment(homeFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {

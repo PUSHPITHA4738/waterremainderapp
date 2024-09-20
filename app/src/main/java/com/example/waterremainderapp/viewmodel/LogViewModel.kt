@@ -1,13 +1,14 @@
-package com.example.waterremainderapp
+package com.example.waterremainderapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.waterremainderapp.database.LogRepository
+import com.example.waterremainderapp.database.Logdatabase
+import com.example.waterremainderapp.database.Logs
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 

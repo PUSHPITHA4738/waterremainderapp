@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".fragments.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/HeadingHydrate"
@@ -87,7 +87,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Goal"
                 android:textColor="#D8505050"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 app:layout_constraintStart_toEndOf="@id/GoalIv"
                 app:layout_constraintTop_toTopOf="@id/Remaining_tv" />
 
@@ -107,9 +107,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/ml"
+                android:text="5 ml"
                 android:textColor="#0F3D64"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/Goaltv"
                 app:layout_constraintTop_toBottomOf="@id/Goaltv" />
