@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val historyFragment = HistoryFragment()
         val settingsFragment = SettingsFragment()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.BottomNavigationIcons)
-        logViewModel=ViewModelProvider(this).get(LogViewModel::class.java)
+        logViewModel=ViewModelProvider(this, LogViewModel.LogsVmFactory(application)).get(LogViewModel::class.java)
 
         replaceFragment(homeFragment)
         bottomNavigationView.setOnNavigationItemSelectedListener {

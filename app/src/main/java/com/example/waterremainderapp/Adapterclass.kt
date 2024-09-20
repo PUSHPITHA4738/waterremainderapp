@@ -11,32 +11,34 @@ import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
-class AdapterClass(private val dataList:ArrayList<Dataclass>):RecyclerView.Adapter<AdapterClass.ViewHolder>() {
+class AdapterClass(private val dataList: ArrayList<Logs>) :
+    RecyclerView.Adapter<AdapterClass.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterClass.ViewHolder {
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.item_layout,parent,false )
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: AdapterClass.ViewHolder, position: Int) {
-        val ItemsViewModel=dataList[position]
-        holder.imageView.setImageResource(ItemsViewModel.dataimage)
-        holder.textview.text=ItemsViewModel.dataquantity
-        holder.textView.text=ItemsViewModel.datatime
+        val item = dataList[position]
+//        holder.imageView.setImageResource(ItemsViewModel.dataimage)
+        holder.quantityTv.text = item.quantity.toString()
+        holder.timeTv.text = item.time.toString()
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
 
-        @SuppressLint("NotifyDataSetChanged")
-        fun addLog(newData: Dataclass) {
-            dataList.add(0,newData)
-            notifyItemInserted(0)
+    @SuppressLint("NotifyDataSetChanged")
+    fun addLog(newData: Logs) {
+        dataList.add(0, newData)
+        notifyItemInserted(0)
     }
-    class ViewHolder(ItemView: View):RecyclerView.ViewHolder(ItemView){
-        val imageView: ImageView=ItemView.findViewById(R.id.DropletsIv)
-        val textview: TextView=ItemView.findViewById(R.id.QuantityTv)
-        val textView: TextView=ItemView.findViewById(R.id.TimeTV)
+
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        val imageView: ImageView = ItemView.findViewById(R.id.DropletsIv)
+        val quantityTv: TextView = ItemView.findViewById(R.id.QuantityTv)
+        val timeTv: TextView = ItemView.findViewById(R.id.TimeTV)
 
     }
 }

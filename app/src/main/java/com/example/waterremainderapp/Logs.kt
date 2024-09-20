@@ -9,5 +9,5 @@ data class Logs(
     @PrimaryKey (autoGenerate = true)
     val id:Int=0,
     val quantity:Int,
-    val time:Long
+    val time:String
 )

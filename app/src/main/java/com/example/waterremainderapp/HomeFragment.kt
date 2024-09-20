@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ss.profilepercentageview.ProfilePercentageView
 import java.text.SimpleDateFormat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.viewModelFactory
+import kotlinx.coroutines.launch
 import java.time.temporal.TemporalQueries
 import java.util.Locale
 
@@ -29,7 +31,7 @@ import java.util.Locale
 class HomeFragment : Fragment() {
     private lateinit var adapter: AdapterClass
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recordsArrayList: ArrayList<Dataclass>
+    private lateinit var recordsArrayList: ArrayList<Logs>
     private val  logsViewModel:LogViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,18 +43,26 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.RecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        recordsArrayList = ArrayList()
-        adapter = AdapterClass(recordsArrayList)
-        recyclerView.adapter = adapter
-
 
         val addWaterBtn = view.findViewById<Button>(R.id.AddWaterBtn)
         addWaterBtn.setOnClickListener {
             showAddWaterDialog()
         }
+
+
+        observeLogs()
         return view
     }
 
+    fun observeLogs () {
+        lifecycleScope.launch {
+            logsViewModel.allLogs.collect {
+                recordsArrayList = it as ArrayList
+                adapter = AdapterClass(recordsArrayList)
+                recyclerView.adapter = adapter
+            }
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     private fun showAddWaterDialog() {
@@ -78,7 +88,8 @@ class HomeFragment : Fragment() {
                     "$quantity ml",
                     getCurrentTime()
                 )
-                adapter.addLog(newLog)
+//                adapter.addLog(newLog)
+                logsViewModel.addLog(quantity.toInt(), getCurrentTime())
                 Toast.makeText(requireContext(), "Log added", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {

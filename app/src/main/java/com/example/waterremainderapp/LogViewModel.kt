@@ -14,16 +14,16 @@ import kotlinx.coroutines.launch
 @Suppress("UNCHECKED_CAST")
 class LogViewModel (application: Application):AndroidViewModel(application){
     private val repository: LogRepository
-    val allLogs: MutableStateFlow<List<Logs>>
+    val allLogs: Flow<List<Logs>>
 
     init {
         // Initialize repository
-        val LogDao = Logdatabase.createDatabases(application).logsDao()
-        repository = LogRepository(LogDao)
+        val logDao = Logdatabase.createDatabases(application).logsDao()
+        repository = LogRepository(logDao)
          allLogs = repository.getAllLogs()
     }
 
-    fun addLog(quantity: Int, time: Long) {
+    fun addLog(quantity: Int, time: String) {
         viewModelScope.launch {
             repository.insertLogs(Logs(quantity=quantity, time = time))
         }

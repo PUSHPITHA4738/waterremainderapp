@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Logs::class], version = 1)
+@Database(entities = [Logs::class], version = 2)
 abstract class Logdatabase:RoomDatabase() {
     abstract fun logsDao(): LogsDao
 
