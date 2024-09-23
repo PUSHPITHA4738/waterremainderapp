@@ -35,6 +35,7 @@ class LogsVmFactory (private val application: Application):ViewModelProvider.New
         return LogViewModel(application) as T
     }
 
+
 }
 }
 
