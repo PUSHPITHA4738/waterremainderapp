@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +42,7 @@ class SettingsFragment: Fragment() {
         quantityEt = view.findViewById(R.id.quantityEt)
         unitSpinner = view.findViewById(R.id.quantitySpinner)
         hourSpinner = view.findViewById(R.id.timeSpinner)
+        quantityEt.inputType=InputType.TYPE_CLASS_NUMBER
 
 
         sharedPreferences = requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)

@@ -34,15 +34,15 @@
 
         <EditText
             android:id="@+id/quantityEt"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/dailyGoalTv"
             app:layout_constraintTop_toBottomOf="@id/HeadingHydrate"
             android:padding="20dp"
-            android:layout_marginStart="110dp"/>
+            android:layout_marginStart="103dp"/>
         <Spinner
             android:id="@+id/quantitySpinner"
-            android:layout_width="101dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/HeadingHydrate"
             app:layout_constraintStart_toEndOf="@id/quantityEt"

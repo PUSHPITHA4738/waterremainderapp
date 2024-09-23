@@ -16,10 +16,11 @@ class AdapterClass(private val dataList: ArrayList<Logs>) :
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AdapterClass.ViewHolder, position: Int) {
         val item = dataList[position]
 //        holder.imageView.setImageResource(ItemsViewModel.dataimage)
-        holder.quantityTv.text = item.quantity.toString()
+        holder.quantityTv.text = item.quantity.toString()+""+"ml"
         holder.timeTv.text = item.time.toString()
     }
 

@@ -102,7 +102,6 @@ class HomeFragment : Fragment() {
             .inflate(R.layout.layout_customdialog, null)
 
 
-        val waterImageView = dialogView.findViewById<ImageView>(R.id.DropletsIv)
         val editTextQuantity = dialogView.findViewById<EditText>(R.id.enterQuantity)
         val saveBtn = dialogView.findViewById<Button>(R.id.save_btn)
         val cancelBtn = dialogView.findViewById<Button>(R.id.cancel_btn)
@@ -117,6 +116,7 @@ class HomeFragment : Fragment() {
             if (quantity.isNotEmpty()) {
 //                adapter.addLog(newLog)
                 logsViewModel.addLog(quantity.toInt(), getCurrentTime())
+
                 Toast.makeText(requireContext(), "Log added", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
