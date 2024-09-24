@@ -89,15 +89,15 @@
                 android:layout_marginStart="10dp"
                 android:text="Goal"
                 android:textColor="#D8505050"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toEndOf="@id/GoalIv"
                 app:layout_constraintTop_toTopOf="@id/Progress_tv" />
 
             <ImageView
                 android:id="@+id/GoalIv"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
                 android:layout_marginStart="27dp"
                 android:contentDescription="Goals"
                 android:src="@drawable/goal_icon"
@@ -108,9 +108,9 @@
                 android:id="@+id/QuantityTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0ml"
+                android:text="--ml"
                 android:textColor="#0F3D64"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:layout_marginTop="6dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/Goaltv"
@@ -122,14 +122,14 @@
                 android:text="Remaining"
                 android:textColor="#D8505050"
                 android:textStyle="normal"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@id/QuantityTv"
                 app:layout_constraintTop_toBottomOf="@id/QuantityTv"/>
             <ImageView
                 android:id="@+id/remainder_icon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:contentDescription="Remainder"
                 android:src="@drawable/remainder_icon"
                 app:layout_constraintStart_toStartOf="@id/GoalIv"
@@ -141,9 +141,9 @@
                 android:id="@+id/Remaining_mlTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0ml"
+                android:text="--ml"
                 android:textColor="#0F3D64"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:layout_marginTop="6dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/remainder_QuantityTv"
@@ -198,13 +198,12 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:src="@drawable/add"
         android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="25dp"
+        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/FloatingActionButtonStyle"/>
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

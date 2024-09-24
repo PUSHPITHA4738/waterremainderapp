@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +23,7 @@ import com.example.waterremainderapp.AdapterClass
 import com.example.waterremainderapp.viewmodel.LogViewModel
 import com.example.waterremainderapp.database.Logs
 import com.example.waterremainderapp.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ss.profilepercentageview.ProfilePercentageView
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var dailyGoals: TextView
     private lateinit var percentageView: ProfilePercentageView
     private lateinit var percentScore: TextView
+    private lateinit var RemainingTv: TextView
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -52,28 +53,28 @@ class HomeFragment : Fragment() {
         percentageView = view.findViewById(R.id.PercentageView)
         percentScore = view.findViewById(R.id.Score_tv)
 
-        val addWaterBtn = view.findViewById<Button>(R.id.AddWaterBtn)
+        val addWaterBtn = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         addWaterBtn.setOnClickListener {
             showAddWaterDialog()
         }
         dailyGoals = view.findViewById(R.id.QuantityTv)
-        sharedPreferences =
-            requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
-        val savedNumber = sharedPreferences?.getString("daily_goal_number", "")
+        RemainingTv=view.findViewById(R.id.Remaining_mlTV)
+        sharedPreferences = requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
+        val savedNumber = sharedPreferences?.getString("daily_goal_number", "--")
         val savedUnits = sharedPreferences?.getString("daily_goal_units", "ml")
-        val savedFrequency = sharedPreferences?.getString("remainder_frequency_number", "")
+        val savedFrequency = sharedPreferences?.getString("remainder_frequency_number", "0")
 
-        dailyGoals.text = savedNumber + " " + savedUnits
+        dailyGoals.text = savedNumber +" "+ savedUnits
 
-        observeLogs()
+        observeLogs(savedUnits)
         return view
     }
 
-    @SuppressLint("DefaultLocale")
-    fun observeLogs () {
+    @SuppressLint("DefaultLocale", "SetTextI18n", "ResourceType")
+    fun observeLogs(savedUnits: String?) {
         lifecycleScope.launch {
             logsViewModel.allLogs.collect {
-                if(it.isNotEmpty()) {
+                if (it.isNotEmpty()) {
                     recordsArrayList = it as ArrayList
                     adapter = AdapterClass(recordsArrayList)
                     recyclerView.adapter = adapter
@@ -81,18 +82,29 @@ class HomeFragment : Fragment() {
                     for (i in it) {
                         totalQuantity += i.quantity
                     }
-                    Log.d("percentage", totalQuantity.toString())
                     if (dailyGoals.text.split(" ")[0].isNotEmpty()) {
                         val values =
                             (totalQuantity / dailyGoals.text.split(" ")[0].toDouble()) * 100
                         percentScore.text = values.toInt().toString()
                         percentageView.setValue(values.toInt())
-                    }
-                }
+                        if (values > 100) {
+                            percentScore.text = 100.toString()
+                            percentageView.setValue(100)
+                        }
+                        RemainingTv.text = (dailyGoals.text.split(" ")[0].toInt()-totalQuantity).toString() + " " + savedUnits
+                        if(totalQuantity>dailyGoals.text.split(" ")[0].toInt()) {
+                            RemainingTv.text = 0.toString() + " " + savedUnits
+                        }
+                        }
+                        }
 
+
+                    }
+
+
+                }
             }
-        }
-    }
+
 
     @SuppressLint("MissingInflatedId", "DefaultLocale")
     private fun showAddWaterDialog() {
