@@ -1,11 +1,9 @@
 package com.example.waterremainderapp.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,9 +36,8 @@ class HomeFragment : Fragment() {
     private lateinit var dailyGoals: TextView
     private lateinit var percentageView: ProfilePercentageView
     private lateinit var percentScore: TextView
-    private lateinit var RemainingTv: TextView
+    private lateinit var remainingTv: TextView
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,25 +50,25 @@ class HomeFragment : Fragment() {
         percentageView = view.findViewById(R.id.PercentageView)
         percentScore = view.findViewById(R.id.Score_tv)
         dailyGoals = view.findViewById(R.id.QuantityTv)
-        RemainingTv=view.findViewById(R.id.Remaining_mlTV)
+        remainingTv = view.findViewById(R.id.Remaining_mlTV)
 
         val addWaterBtn = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         addWaterBtn.setOnClickListener {
             showAddWaterDialog()
         }
-        sharedPreferences = requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
+        sharedPreferences =
+            requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
         val savedNumber = sharedPreferences?.getString("daily_goal_number", "--")
         val savedUnits = sharedPreferences?.getString("daily_goal_units", "ml")
         val savedFrequency = sharedPreferences?.getString("remainder_frequency_number", "0")
 
-        dailyGoals.text = savedNumber +" "+ savedUnits
+        dailyGoals.text = "$savedNumber $savedUnits"
 
         observeLogs(savedUnits)
         return view
     }
 
-    @SuppressLint("DefaultLocale", "SetTextI18n", "ResourceType")
-    fun observeLogs(savedUnits: String?) {
+    private fun observeLogs(savedUnits: String?) {
         lifecycleScope.launch {
             logsViewModel.allLogs.collect {
                 if (it.isNotEmpty()) {
@@ -84,35 +81,34 @@ class HomeFragment : Fragment() {
                         totalQuantity += i.quantity
                     }
 
-                    if (dailyGoals.text.split(" ")[0].isNotEmpty()) {
+                    val goalQuantity = dailyGoals.text.split(" ")[0]
+                    if (goalQuantity.isNotEmpty()) {
                         val values =
-                            (totalQuantity / dailyGoals.text.split(" ")[0].toDouble()) * 100
+                            (totalQuantity / goalQuantity.toDouble()) * 100
                         percentScore.text = values.toInt().toString()
                         percentageView.setValue(values.toInt())
                         if (values > 100) {
                             percentScore.text = 100.toString()
                             percentageView.setValue(100)
                         }
-                        RemainingTv.text = (dailyGoals.text.split(" ")[0].toInt()-totalQuantity).toString() + " " + savedUnits
+                        remainingTv.text =
+                            (goalQuantity.toInt() - totalQuantity).toString() + " " + savedUnits
 
-                        if(totalQuantity>dailyGoals.text.split(" ")[0].toInt()) {
-                            RemainingTv.text = 0.toString() + " " + savedUnits
+                        if (totalQuantity > goalQuantity.toInt()) {
+                            remainingTv.text = "0 $savedUnits"
                         }
-                        }
-                        }
-
-
                     }
-
-
                 }
+
+
             }
 
 
-    @SuppressLint("MissingInflatedId", "DefaultLocale")
+        }
+    }
+
     private fun showAddWaterDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        val inflator = layoutInflater
         val dialogView = LayoutInflater.from(requireContext())
             .inflate(R.layout.layout_customdialog, null)
 
@@ -151,4 +147,4 @@ class HomeFragment : Fragment() {
         val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
         return format.format(currentTime).toLowerCase(Locale.getDefault())
     }
-    }
+}

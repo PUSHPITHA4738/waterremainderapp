@@ -28,7 +28,6 @@ class AdapterClass(private val dataList: ArrayList<Logs>) :
         return dataList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun addLog(newData: Logs) {
         dataList.add(0, newData)
         notifyItemInserted(0)

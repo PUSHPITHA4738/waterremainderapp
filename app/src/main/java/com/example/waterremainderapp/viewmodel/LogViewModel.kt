@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 
-@Suppress("UNCHECKED_CAST")
-class LogViewModel (application: Application):AndroidViewModel(application){
+class LogViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: LogRepository
     val allLogs: Flow<List<Logs>>
 
@@ -21,21 +20,20 @@ class LogViewModel (application: Application):AndroidViewModel(application){
         // Initialize repository
         val logDao = Logdatabase.createDatabases(application).logsDao()
         repository = LogRepository(logDao)
-         allLogs = repository.getAllLogs()
+        allLogs = repository.getAllLogs()
     }
 
     fun addLog(quantity: Int, time: String) {
         viewModelScope.launch {
-            repository.insertLogs(Logs(quantity=quantity, time = time))
+            repository.insertLogs(Logs(quantity = quantity, time = time))
         }
     }
 
-class LogsVmFactory (private val application: Application):ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LogViewModel(application) as T
+    class LogsVmFactory(private val application: Application) :
+        ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return LogViewModel(application) as T
+        }
     }
-
-
-}
 }
 
