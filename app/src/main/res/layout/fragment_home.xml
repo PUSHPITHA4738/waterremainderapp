@@ -90,7 +90,7 @@
                 android:text="Goal"
                 android:textColor="#D8505050"
                 android:textSize="16sp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@id/GoalIv"
                 app:layout_constraintTop_toTopOf="@id/Progress_tv" />
 
@@ -111,7 +111,7 @@
                 android:text="--ml"
                 android:textColor="#0F3D64"
                 android:textSize="17sp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="9dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/Goaltv"
                 app:layout_constraintTop_toBottomOf="@id/Goaltv" />
@@ -123,7 +123,7 @@
                 android:textColor="#D8505050"
                 android:textStyle="normal"
                 android:textSize="16sp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="@id/QuantityTv"
                 app:layout_constraintTop_toBottomOf="@id/QuantityTv"/>
             <ImageView
@@ -134,9 +134,6 @@
                 android:src="@drawable/remainder_icon"
                 app:layout_constraintStart_toStartOf="@id/GoalIv"
                 app:layout_constraintTop_toBottomOf="@id/remainder_QuantityTv"/>
-
-
-
             <TextView
                 android:id="@+id/Remaining_mlTV"
                 android:layout_width="wrap_content"
@@ -144,14 +141,10 @@
                 android:text="--ml"
                 android:textColor="#0F3D64"
                 android:textSize="17sp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="9dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/remainder_QuantityTv"
                 app:layout_constraintTop_toBottomOf="@id/remainder_QuantityTv"/>
-
-
-
-
 
             <TextView
                 android:id="@+id/Score_tv"

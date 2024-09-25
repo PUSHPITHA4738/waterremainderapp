@@ -52,13 +52,13 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         percentageView = view.findViewById(R.id.PercentageView)
         percentScore = view.findViewById(R.id.Score_tv)
+        dailyGoals = view.findViewById(R.id.QuantityTv)
+        RemainingTv=view.findViewById(R.id.Remaining_mlTV)
 
         val addWaterBtn = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         addWaterBtn.setOnClickListener {
             showAddWaterDialog()
         }
-        dailyGoals = view.findViewById(R.id.QuantityTv)
-        RemainingTv=view.findViewById(R.id.Remaining_mlTV)
         sharedPreferences = requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
         val savedNumber = sharedPreferences?.getString("daily_goal_number", "--")
         val savedUnits = sharedPreferences?.getString("daily_goal_units", "ml")
@@ -78,10 +78,12 @@ class HomeFragment : Fragment() {
                     recordsArrayList = it as ArrayList
                     adapter = AdapterClass(recordsArrayList)
                     recyclerView.adapter = adapter
+
                     var totalQuantity = 0
                     for (i in it) {
                         totalQuantity += i.quantity
                     }
+
                     if (dailyGoals.text.split(" ")[0].isNotEmpty()) {
                         val values =
                             (totalQuantity / dailyGoals.text.split(" ")[0].toDouble()) * 100
@@ -92,6 +94,7 @@ class HomeFragment : Fragment() {
                             percentageView.setValue(100)
                         }
                         RemainingTv.text = (dailyGoals.text.split(" ")[0].toInt()-totalQuantity).toString() + " " + savedUnits
+
                         if(totalQuantity>dailyGoals.text.split(" ")[0].toInt()) {
                             RemainingTv.text = 0.toString() + " " + savedUnits
                         }
@@ -148,4 +151,4 @@ class HomeFragment : Fragment() {
         val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
         return format.format(currentTime).toLowerCase(Locale.getDefault())
     }
-}
+    }
