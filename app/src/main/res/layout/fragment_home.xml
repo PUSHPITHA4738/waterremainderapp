@@ -159,11 +159,25 @@
                 app:layout_constraintStart_toStartOf="@id/PercentageView"
                 app:layout_constraintTop_toTopOf="@id/PercentageView" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:text="+"
+        android:textSize="19dp"
+        android:textColor="@color/white"
+        android:textStyle="normal"
+        android:background="@drawable/buttonbackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"/>
 
     <TextView
         android:id="@+id/Record_tv"
@@ -187,15 +201,11 @@
         tools:itemCount="5"
         tools:listitem="@layout/item_layout" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:backgroundTint="@color/blue"
-        android:src="@drawable/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

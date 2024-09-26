@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
         dailyGoals = view.findViewById(R.id.QuantityTv)
         remainingTv = view.findViewById(R.id.Remaining_mlTV)
 
-        val addWaterBtn = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val addWaterBtn = view.findViewById<Button>(R.id.btn)
         addWaterBtn.setOnClickListener {
             showAddWaterDialog()
         }
@@ -75,7 +75,6 @@ class HomeFragment : Fragment() {
                     recordsArrayList = it as ArrayList
                     adapter = AdapterClass(recordsArrayList)
                     recyclerView.adapter = adapter
-
                     var totalQuantity = 0
                     for (i in it) {
                         totalQuantity += i.quantity
@@ -98,6 +97,7 @@ class HomeFragment : Fragment() {
                             remainingTv.text = "0 $savedUnits"
                         }
                     }
+
                 }
 
 
