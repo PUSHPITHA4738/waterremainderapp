@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment
 import com.example.waterremainderapp.R
 
 
-class SettingsFragment: Fragment() {
+class SettingsFragment : Fragment() {
 
     private lateinit var unitSpinner: Spinner
     private lateinit var hourSpinner: Spinner
@@ -42,10 +42,11 @@ class SettingsFragment: Fragment() {
         quantityEt = view.findViewById(R.id.quantityEt)
         unitSpinner = view.findViewById(R.id.quantitySpinner)
         hourSpinner = view.findViewById(R.id.timeSpinner)
-        quantityEt.inputType=InputType.TYPE_CLASS_NUMBER
+        quantityEt.inputType = InputType.TYPE_CLASS_NUMBER
 
 
-        sharedPreferences = requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
+        sharedPreferences =
+            requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
 
 
         handleHoursSpinner()

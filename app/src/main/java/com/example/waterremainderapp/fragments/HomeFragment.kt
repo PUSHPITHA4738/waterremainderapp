@@ -5,10 +5,15 @@ import android.content.SharedPreferences
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -38,6 +43,8 @@ class HomeFragment : Fragment() {
     private lateinit var percentScore: TextView
     private lateinit var remainingTv: TextView
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,13 +59,17 @@ class HomeFragment : Fragment() {
         dailyGoals = view.findViewById(R.id.QuantityTv)
         remainingTv = view.findViewById(R.id.Remaining_mlTV)
 
+
+
+
+
         val addWaterBtn = view.findViewById<Button>(R.id.btn)
         addWaterBtn.setOnClickListener {
             showAddWaterDialog()
         }
         sharedPreferences =
             requireContext().getSharedPreferences("WaterRemainder", Context.MODE_PRIVATE)
-        val savedNumber = sharedPreferences?.getString("daily_goal_number", "--")
+        val savedNumber = sharedPreferences?.getString("daily_goal_number", "0")
         val savedUnits = sharedPreferences?.getString("daily_goal_units", "ml")
         val savedFrequency = sharedPreferences?.getString("remainder_frequency_number", "0")
 
@@ -67,6 +78,7 @@ class HomeFragment : Fragment() {
         observeLogs(savedUnits)
         return view
     }
+
 
     private fun observeLogs(savedUnits: String?) {
         lifecycleScope.launch {

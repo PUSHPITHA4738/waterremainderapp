@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Logs::class], version = 2)
-abstract class Logdatabase:RoomDatabase() {
+abstract class Logdatabase : RoomDatabase() {
     abstract fun logsDao(): LogsDao
 
     companion object {

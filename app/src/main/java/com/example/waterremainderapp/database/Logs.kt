@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "waterRecordLogs")
 data class Logs(
-    @PrimaryKey (autoGenerate = true)
-    val id:Int=0,
-    val quantity:Int,
-    val time:String
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val quantity: Int,
+    val time: String
 )
